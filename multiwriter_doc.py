@@ -82,7 +82,7 @@ class Multiwriter:
         doc_path_list = []
         for file in range(total_page):
             if os.path.exists(output_path+os.sep+file+'.docx'):
-                doc_path_list.append(output_path+os.sep+file+'.docx')
+                doc_path_list.append(output_path+os.sep+str(file)+'.docx')
         merged_document = Document()
         for doc_name in doc_path_list:
             doc = Document(doc_name)
