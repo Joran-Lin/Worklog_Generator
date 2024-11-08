@@ -59,7 +59,7 @@ class Multiwriter:
             return
         
     def write_content(self,date,time,weather,job_title,content,question_occur,method_effect,page,output_path):
-        tpl = DocxTemplate('/Users/jaron/Desktop/Python Programs/library_homework/实习工作日志正文.docx')
+        tpl = DocxTemplate(self.parent_ptath+os.sep'实习工作日志正文.docx')
         context = {'date': date, 
         'time': time,
         'weather': weather,
