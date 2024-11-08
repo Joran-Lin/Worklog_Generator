@@ -81,7 +81,7 @@ class Multiwriter:
     def combine_doc(self,output_path,job_name,start_time,end_time,total_page):
         doc_path_list = []
         for file in range(total_page):
-            if os.path.exists(output_path+os.sep+file+'.docx'):
+            if os.path.exists(output_path+os.sep+str(file)+'.docx'):
                 doc_path_list.append(output_path+os.sep+str(file)+'.docx')
         merged_document = Document()
         for doc_name in doc_path_list:
