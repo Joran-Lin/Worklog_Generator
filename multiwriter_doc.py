@@ -74,7 +74,7 @@ class Multiwriter:
     
     def remove_file(self,output_path,job_name,start_time,end_time):
         for file in os.listdir(output_path):
-            if '.docx' in file and file != f'{job_name} {start_time} - {end_time}.docx':
+            if '.docx' in file:
                 os.remove(output_path+os.sep+file)
                 print(f'deleting {file}')
     
