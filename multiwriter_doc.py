@@ -78,11 +78,11 @@ class Multiwriter:
                 os.remove(output_path+os.sep+file)
                 print(f'deleting {file}')
     
-    def combine_doc(self,output_path,job_name,start_time,end_time):
+    def combine_doc(self,output_path,job_name,start_time,end_time,total_page):
         doc_path_list = []
-        for file in os.listdir(output_path):
-            if '.docx' in file:
-                doc_path_list.append(output_path+os.sep+file)
+        for file in range(total_page):
+            if os.path.exits(output_path+os.sep+file+'.docx'):
+                doc_path_list.append(output_path+os.sep+file+'.docx')
         merged_document = Document()
         for doc_name in doc_path_list:
             doc = Document(doc_name)
@@ -114,6 +114,7 @@ class Multiwriter:
                     while current_datetime <= end_time:
                         datetime_list.append(current_datetime)
                         current_datetime += timedelta(days=1)
+                    total_page = len(datetime_list)
                     for _,date in enumerate(datetime_list):
                         results_placeholder.text(f'Generating {date} Workinglog Content....')
                         isoweekday_number = date.isoweekday()
@@ -125,7 +126,7 @@ class Multiwriter:
                             os.makedirs(self.parent_ptath+os.sep+f'{job_title}')
                             self.write_content(date,isoweekday_name,'晴',job_title,'\n'+work_content.strip(),'\n'+ques_content.strip(),'\n'+method_content.strip(),_,self.parent_ptath+os.sep+f'{job_title}')
                     results_placeholder.text(f'Combining Workinglog...')
-                    docx_buffer = self.combine_doc(self.parent_ptath+os.sep+f'{job_title}',job_title,start_time,end_time)
+                    docx_buffer = self.combine_doc(self.parent_ptath+os.sep+f'{job_title}',job_title,start_time,end_time,total_page)
                     self.remove_file(self.parent_ptath+os.sep+f'{job_title}',job_title,start_time,end_time)
                     results_placeholder.text(f'Finished!')
                     st.download_button(
