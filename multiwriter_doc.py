@@ -11,7 +11,7 @@ from io import BytesIO
 class Multiwriter:
 
     def __init__(self,
-                 api_key='edcaad198e032fdc4cbfdeabbf2662d4.ui4sERTRfZSUE6sy',
+                 api_key=None,
                  ) -> None:
         self.client = ZhipuAI(api_key=api_key)
         self.works_prompt = """你需要根据用户上传的工作职责生成当天的工作内容，字数严格控制在200字以内。"""
